@@ -1,0 +1,14 @@
+*{
+    padding:0;
+    margin:0;
+}
+#canvas{
+    border:1px solid rgba(13.4%, 91.7%, 80%, 0.6);
+    box-sizing: border-box;
+}
+#selector{
+    display:none;
+    border:1px solid #000;
+    box-sizing:border-box;
+    position:absolute;
+}

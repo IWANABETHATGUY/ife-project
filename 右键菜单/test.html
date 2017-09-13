@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.contextmenu {
+			display:block;
+			width: 200px;
+			background: rgb(99.3%, 100%, 93.7%);
+			box-shadow:3px 2px 20px rgba(2, 2, 2, 0.42);
+			position:absolute;
+			top:0;
+			left:0;
+			padding:0;
+			margin:0;
+			opacity:0;
+			border-radius:5px;
+		}
+		#container {
+			height: 1700px;
+			width: 90%;
+			background-color: #ccc;
+			margin:0 auto;
+		}
+		.menu-item{
+			min-height:20px;
+			list-style:none;
+			border-bottom:1px solid #ccc;
+			text-align:left;
+			padding-left:30px;
+			
+		}
+		.menu-item:nth-child(1){
+			border-radius:5px;
+		}
+		.menu-item:last-child{
+			border-radius:5px;
+		}
+		.menu-item:hover{
+			background:#4ee2f9;
+			cursor:pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container"></div>
+	<ul class="contextmenu">
+		<li class="menu-item">1</li>
+		<li class="menu-item">2</li>
+		<li class="menu-item">3</li>
+		<li class="menu-item">4</li>
+	</ul>
+</body>
+<script>
+	let text = document.getElementById('container').firstElementChild,
+		menu = document.getElementsByClassName('contextmenu')[0],
+		menuHeight = menu.getBoundingClientRect().height,
+		menuWidth = menu.getBoundingClientRect().width;
+	setTimeout(() => {
+		menu.style.display = 'none';
+		menu.style.opacity = '1';
+	})
+	document.addEventListener('contextmenu', (e) => {
+		let target = e.target;
+		e.preventDefault();
+		if (target.className === 'menu-item'){
+			console.log(`you click the item ${target.innerHTML}`);
+			menu.style.display = 'none';
+		} else {
+			menu.style.display = 'block';
+			let mouse = {
+				x: e.pageX,
+				y:e.pageY
+			},
+				winWidth = window.innerWidth,
+				winHeight = window.innerHeight,
+				scrollTop = document.body.scrollTop;
+			if (mouse.x + menuWidth <= winWidth) {
+				if (mouse.y + menuHeight < winHeight + scrollTop){
+					menu.style.transform = `translate(${e.pageX}px,${e.pageY}px)`;
+				} else {
+					menu.style.transform = `translate(${e.pageX}px,${e.pageY - menuHeight}px)`;					
+				}
+			} else {
+				if (mouse.y + menuHeight < winHeight + scrollTop){
+					menu.style.transform = `translate(${e.pageX - menuWidth}px,${e.pageY}px)`;
+				} else {
+					menu.style.transform = `translate(${e.pageX - menuWidth}px,${e.pageY - menuHeight}px)`;					
+				}
+			}
+		}
+	})
+	document.addEventListener('click', (e) => {
+		let target = e.target;
+		if (target.className === 'menu-item') {
+			console.log(`you click the item ${target.innerHTML}`);
+		} 
+		menu.style.display = 'none';
+	})
+
+</script>
+
+</html>

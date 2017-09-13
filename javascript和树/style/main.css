@@ -1,0 +1,34 @@
+*{
+    padding:0;
+    margin:0;
+}
+.container{
+    height:600px;
+    width:90%;
+    margin:10px auto 0 auto;
+    background:#efefef;
+    display:flex;
+    justify-content: space-between;
+    word-wrap:wrap;
+    align-content:center;        
+}
+.container.active{
+    background-color: #f00;
+}      
+.box{
+    display:flex;
+    flex-wrap:wrap;
+    background-color: #efefef;
+    justify-content:center;
+    border:1px solid #000;
+    margin:10px;
+}   
+.box.active{
+    background-color: #f00;
+}  
+.controler{
+    width:90%;
+    height:100px;
+    margin:0 auto;
+    border:1px solid #ccc;
+}

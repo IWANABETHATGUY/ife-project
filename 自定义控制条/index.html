@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="" href="style/main.css">
+	<script src="js/index.js"></script>
+</head>
+
+<body>
+	<div class="container">
+	</div>
+	<button id="button">change direction</button>
+</body>
+<script>
+	let range = new rangeInput('.container', {
+		step:5,
+		initValue: 50,
+		minValue: 0,
+		maxValue: 30,
+	}),
+		button = document.getElementById('button');
+	button.onclick = function() {
+		range.remove();
+		range = null;
+		range = new rangeInput('.container', {
+			step:5,
+			initValue: 50,
+			minValue: 0,
+			maxValue: 30,
+			direction: 'vertical'
+		});
+	}
+</script>
+
+</html>
